@@ -1,8 +1,14 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        res = []
-        for i in range(len(word1)):
-            res.insert(i*2,word1[i])
-        for i in range(len(word2)):
-            res.insert((i*2)+1,word2[i])
-        return "".join(res)
+        len1 = len(word1)
+        len2 = len(word2)
+        minLen = min(len(word1),len(word2))
+        mergedWord = ""
+        for i in range(minLen):
+            mergedWord += word1[i]
+            mergedWord += word2[i]
+        if len1 < len2:
+            mergedWord += word2[len1:]
+        else:
+            mergedWord += word1[len2:]
+        return mergedWord
