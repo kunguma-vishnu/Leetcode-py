@@ -1,9 +1,9 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        seen = {}
+        res = []
+        inverse = {}
         for i in range(len(nums)):
-            complement = target-nums[i]
-            if complement in seen:
-                return [seen[complement],i]
-            seen[nums[i]] = i
-        return [-1,-1]
+            if target-nums[i] in inverse:
+                return [i,inverse.get(target-nums[i])]
+            inverse[nums[i]] = i
+        return None
