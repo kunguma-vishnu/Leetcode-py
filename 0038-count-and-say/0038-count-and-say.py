@@ -1,19 +1,17 @@
 class Solution:
     def countAndSay(self, n: int) -> str:
-        if n==1:
+        if n == 1:
             return "1"
-        x=self.countAndSay(n-1)
-        s=""
-        y=x[0]
-        ct=1
-        for i in range(1,len(x)):
-            if x[i]==y:
-                ct+=1
+        prev = self.countAndSay(n-1)
+        result = ""
+        count = 1
+        digit = prev[0]
+        for i in range(1, len(prev)):
+            if prev[i] == digit:
+                count += 1
             else:
-                s+=str(ct)
-                s+=str(y)
-                y=x[i]
-                ct=1
-        s+=str(ct)
-        s+=str(y)
-        return s
+                result += str(count) + digit
+                count = 1
+                digit = prev[i]
+        result += str(count) + digit
+        return result
